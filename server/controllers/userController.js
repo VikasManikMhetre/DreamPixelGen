@@ -63,14 +63,16 @@ const loginUser = async (req, res) =>{
 }
 
 
-const userCredits = async (req,res) =>{
+const userCredits = async (req, res) =>{
     try{
+        const {userId} =req.body 
+        const user =await userModel.findById(userId)
+        
         if (!user) {
         return res.json({ success: false, message: 'User not found' });
         }
 
-        const {userId} =req.body 
-        const user =await userModel.findById(userId)
+        // console.log("User credits:", user.creditBalance);
         res.json({success: true, credits: user.creditBalance, user:{name: user.name}})
 
     }catch (error) {

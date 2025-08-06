@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
+
 // import {axios} from 'axios'
 const Login = () => {
 
@@ -27,7 +28,7 @@ const Login = () => {
           if(data.success){
             setToken(data.token);
             setUser(data.user);
-            localStorage.getItem('token', data.token);
+            localStorage.setItem( 'token', data.token);
             setShowLogin(false);
           }else{
             toast.error(data.message)
@@ -79,7 +80,7 @@ const Login = () => {
         </div>}
 
 
-        <div className='border px-6 py-2 flex item-center gap-5 rounded-full mt-4'>
+        <div className='border px-6 py-2 flex items-center gap-5 rounded-full mt-4'>
             <img src={assets.email_icon} alt="" />
             <input onChange={e=> setEmail(e.target.value)} value={email} type="text" className='outline-none text-sm ' placeholder='Email id' required />
         </div>
